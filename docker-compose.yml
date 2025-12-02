@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: flakewatch
+      POSTGRES_PASSWORD: flakewatch
+      POSTGRES_DB: flakewatch
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "flakewatch"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
